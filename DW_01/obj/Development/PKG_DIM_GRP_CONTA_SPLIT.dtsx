@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="PKG_DIM_GRP_CONTA_SPLIT"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{2A7B0CE1-2B50-4179-98CE-51D1065F287A}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{448A1343-13F0-45FB-A75A-BB923DEA0503}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -578,6 +578,15 @@
                       lineageId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[SRKPARENT]"
                       name="SRKPARENT"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[DAT_ATUALIZACAO]"
+                      lineageId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                      name="DAT_ATUALIZACAO"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -603,6 +612,10 @@
                       refId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[SRKPARENT]"
                       dataType="i4"
                       name="SRKPARENT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[DAT_ATUALIZACAO]"
+                      dataType="dbTimeStamp"
+                      name="DAT_ATUALIZACAO" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -639,6 +652,11 @@
                       dataType="i4"
                       lineageId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[TPCOMPONENT]"
                       name="TPCOMPONENT" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                      name="DAT_ATUALIZACAO" />
                     <outputColumn
                       refId="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                       dataType="i4"
@@ -1467,17 +1485,21 @@ FROM G1020 (NOLOCK)</property>
           Id="Package\DFT_DIM_GRP_CONTA\DIV_COND_2"
           TopLeft="242,319" />
         <NodeLayout
-          Size="177,48"
-          Id="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA_2"
-          TopLeft="18,313" />
-        <NodeLayout
           Size="162,42"
           Id="Package\DFT_DIM_GRP_CONTA\ORI_GRP_CONTA"
           TopLeft="104,18" />
         <NodeLayout
+          Size="217,42"
+          Id="Package\DFT_DIM_GRP_CONTA\REMOVE LINHAS EXCLUÍDAS"
+          TopLeft="417,317" />
+        <NodeLayout
+          Size="177,48"
+          Id="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA_2"
+          TopLeft="18,313" />
+        <NodeLayout
           Size="207,42"
           Id="Package\DFT_DIM_GRP_CONTA\MERGE_JOIN_GRP_CONTA"
-          TopLeft="215,118" />
+          TopLeft="214,118" />
         <NodeLayout
           Size="168,42"
           Id="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA"
@@ -1490,43 +1512,15 @@ FROM G1020 (NOLOCK)</property>
           Size="142,42"
           Id="Package\DFT_DIM_GRP_CONTA\DIV_COND_1"
           TopLeft="242,193" />
-        <NodeLayout
-          Size="217,42"
-          Id="Package\DFT_DIM_GRP_CONTA\REMOVE LINHAS EXCLUÍDAS"
-          TopLeft="417,317" />
-        <EdgeLayout
-          Id="Package\DFT_DIM_GRP_CONTA.Paths[Dados Não Encontrados]"
-          TopLeft="313.75,361">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-53.277578125,15.18994140625,106.55515625,10.1201171875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT_DIM_GRP_CONTA.Paths[Saída de Origem OLE DB1]"
           TopLeft="455,57">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-103.333333333333,61"
+              EndConnector="-104.333333333333,61"
               Start="0,0"
-              End="-103.333333333333,53.5">
+              End="-104.333333333333,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1537,13 +1531,13 @@ FROM G1020 (NOLOCK)</property>
                     Point2="0,36.3192713326941"
                     Point3="-4,36.3192713326941" />
                   <mssgle:LineSegment
-                    End="-99.3333333333334,36.3192713326941" />
+                    End="-100.333333333333,36.3192713326941" />
                   <mssgle:CubicBezierSegment
-                    Point1="-99.3333333333334,36.3192713326941"
-                    Point2="-103.333333333333,36.3192713326941"
-                    Point3="-103.333333333333,40.3192713326941" />
+                    Point1="-100.333333333333,36.3192713326941"
+                    Point2="-104.333333333333,36.3192713326941"
+                    Point3="-104.333333333333,40.3192713326941" />
                   <mssgle:LineSegment
-                    End="-103.333333333333,53.5" />
+                    End="-104.333333333333,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1558,9 +1552,9 @@ FROM G1020 (NOLOCK)</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="100.333333333333,58"
+              EndConnector="99.3333333333333,58"
               Start="0,0"
-              End="100.333333333333,50.5">
+              End="99.3333333333333,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1571,13 +1565,13 @@ FROM G1020 (NOLOCK)</property>
                     Point2="0,34.5330776605944"
                     Point3="4,34.5330776605944" />
                   <mssgle:LineSegment
-                    End="96.3333333333333,34.5330776605944" />
+                    End="95.3333333333333,34.5330776605944" />
                   <mssgle:CubicBezierSegment
-                    Point1="96.3333333333333,34.5330776605944"
-                    Point2="100.333333333333,34.5330776605944"
-                    Point3="100.333333333333,38.5330776605944" />
+                    Point1="95.3333333333333,34.5330776605944"
+                    Point2="99.3333333333333,34.5330776605944"
+                    Point3="99.3333333333333,38.5330776605944" />
                   <mssgle:LineSegment
-                    End="100.333333333333,50.5" />
+                    End="99.3333333333333,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1588,7 +1582,7 @@ FROM G1020 (NOLOCK)</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT_DIM_GRP_CONTA.Paths[Saída da Junção de Mesclagem]"
-          TopLeft="315.75,160">
+          TopLeft="315.25,160">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1704,11 +1698,35 @@ FROM G1020 (NOLOCK)</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_GRP_CONTA.Paths[Dados Não Encontrados]"
+          TopLeft="313.75,361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.277578125,15.18994140625,106.55515625,10.1201171875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA_2">
+    design-time-name="Package\DFT_DIM_GRP_CONTA\ORI_GRP_CONTA">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1721,7 +1739,7 @@ FROM G1020 (NOLOCK)</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_DIM_GRP_CONTA\ORI_GRP_CONTA">
+    design-time-name="Package\DFT_DIM_GRP_CONTA\DST_GRP_CONTA_2">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

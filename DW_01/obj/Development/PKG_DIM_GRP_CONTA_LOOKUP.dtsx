@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="PKG_DIM_GRP_CONTA_LOOKUP"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{6508B76A-F954-4DFD-8E72-5E790F551706}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{5FCB2DC0-35E1-45D3-814F-6FF77483AFFC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -229,7 +229,7 @@
                       expressionType="Notify"
                       name="SqlCommandParam"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DIM_GRUPO_CONTA]) [refTable]
-where [refTable].[NOMGRUPOCONTA] = ? and [refTable].[SRKTIPOCONTA] = ? and [refTable].[SRKPARENT] = ? and [refTable].[TPCOMPONENT] = ? and [refTable].[ID] = ?</property>
+where [refTable].[ID] = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
@@ -265,7 +265,7 @@ where [refTable].[NOMGRUPOCONTA] = ? and [refTable].[SRKTIPOCONTA] = ? and [refT
                       containsID="true"
                       dataType="System.String"
                       description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                      name="ParameterMap">#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[NOMGRUPOCONTA]};#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[IDTIPOCONTA]};#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[IDPARENT]};#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[TPCOMPONENT]};#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica disponibilidade - Destino).Outputs[Saída de Correspondência de Pesquisa].Columns[ID_DEST]};</property>
+                      name="ParameterMap">#{Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica disponibilidade - Destino).Outputs[Saída de Correspondência de Pesquisa].Columns[ID_DEST]};</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -288,72 +288,6 @@ where [refTable].[NOMGRUPOCONTA] = ? and [refTable].[SRKTIPOCONTA] = ? and [refT
                       refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa]"
                       name="Entrada de Pesquisa">
                       <inputColumns>
-                        <inputColumn
-                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa].Columns[NOMGRUPOCONTA]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="255"
-                          cachedName="NOMGRUPOCONTA"
-                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[NOMGRUPOCONTA]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Especifica a coluna na tabela de referência que uma coluna une."
-                              name="JoinToReferenceColumn">NOMGRUPOCONTA</property>
-                            <property
-                              dataType="System.Null"
-                              description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa].Columns[IDTIPOCONTA]"
-                          cachedDataType="i4"
-                          cachedName="IDTIPOCONTA"
-                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[IDTIPOCONTA]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Especifica a coluna na tabela de referência que uma coluna une."
-                              name="JoinToReferenceColumn">SRKTIPOCONTA</property>
-                            <property
-                              dataType="System.Null"
-                              description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa].Columns[IDPARENT]"
-                          cachedDataType="i4"
-                          cachedName="IDPARENT"
-                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[IDPARENT]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Especifica a coluna na tabela de referência que uma coluna une."
-                              name="JoinToReferenceColumn">SRKPARENT</property>
-                            <property
-                              dataType="System.Null"
-                              description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa].Columns[TPCOMPONENT]"
-                          cachedDataType="i4"
-                          cachedName="TPCOMPONENT"
-                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[TPCOMPONENT]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Especifica a coluna na tabela de referência que uma coluna une."
-                              name="JoinToReferenceColumn">TPCOMPONENT</property>
-                            <property
-                              dataType="System.Null"
-                              description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
                         <inputColumn
                           refId="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes).Inputs[Entrada de Pesquisa].Columns[ID_DEST]"
                           cachedDataType="i4"
@@ -1280,6 +1214,15 @@ WHERE [ID] = ?</property>
                           lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[TPCOMPONENT]"
                           name="TPCOMPONENT"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[DAT_ATUALIZACAO]"
+                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                          name="DAT_ATUALIZACAO"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1305,6 +1248,10 @@ WHERE [ID] = ?</property>
                           refId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[TPCOMPONENT]"
                           dataType="i4"
                           name="TPCOMPONENT" />
+                        <externalMetadataColumn
+                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Origem OLE DB].ExternalColumns[DAT_ATUALIZACAO]"
+                          dataType="dbTimeStamp"
+                          name="DAT_ATUALIZACAO" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1339,6 +1286,11 @@ WHERE [ID] = ?</property>
                           dataType="i4"
                           lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[TPCOMPONENT]"
                           name="TPCOMPONENT" />
+                        <outputColumn
+                          refId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[DAT_ATUALIZACAO]"
+                          name="DAT_ATUALIZACAO" />
                         <outputColumn
                           refId="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                           dataType="i4"
@@ -1557,37 +1509,25 @@ where [refTable].[ID] = ?</property>
         <NodeLayout
           Size="187,42"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA"
-          TopLeft="76,110" />
+          TopLeft="67,111" />
         <NodeLayout
           Size="193,42"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA"
           TopLeft="60,25" />
         <EdgeLayout
           Id="Package\CONT_SEQ_DIM_GRP_CONTA.PrecedenceConstraints[Restrição]"
-          TopLeft="156.5,67">
+          TopLeft="158.5,67">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="13,43"
+              EndConnector="0,44"
               Start="0,0"
-              End="13,35.5">
+              End="0,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.5"
-                    Point2="0,21.5"
-                    Point3="4,21.5" />
-                  <mssgle:LineSegment
-                    End="9,21.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="9,21.5"
-                    Point2="13,21.5"
-                    Point3="13,25.5" />
-                  <mssgle:LineSegment
-                    End="13,35.5" />
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1599,10 +1539,10 @@ where [refTable].[ID] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="332,192"
-          Size="332,235"
+          PanelSize="332,214"
+          Size="332,257"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA"
-          TopLeft="142,38" />
+          TopLeft="42,35" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1616,12 +1556,24 @@ where [refTable].[ID] = ?</property>
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA"
           TopLeft="122,16" />
         <NodeLayout
-          Size="162,52"
+          Size="164,42"
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\UPD_GRP_CONTA"
+          TopLeft="128,220" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes)"
+          TopLeft="123,113" />
+        <NodeLayout
+          Size="216,48"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica disponibilidade - Destino)"
           TopLeft="396,15" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\DEST_GRP_CONTA"
+          TopLeft="352,220" />
         <EdgeLayout
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA.Paths[Saída de Origem OLE DB]"
-          TopLeft="291,39">
+          TopLeft="291,38">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1641,90 +1593,42 @@ where [refTable].[ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="169,42"
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\DEST_GRP_CONTA"
-          TopLeft="352,217" />
-        <EdgeLayout
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA.Paths[Saída Sem Correspondência de Pesquisa]"
-          TopLeft="502.666666666667,67">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-66.1666666666666,150"
-              Start="0,0"
-              End="-66.1666666666666,142.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,56.880195599022" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,56.880195599022"
-                    Point2="0,60.880195599022"
-                    Point3="-4,60.880195599022" />
-                  <mssgle:LineSegment
-                    End="-62.1666666666666,60.880195599022" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-62.1666666666666,60.880195599022"
-                    Point2="-66.1666666666666,60.880195599022"
-                    Point3="-66.1666666666666,64.880195599022" />
-                  <mssgle:LineSegment
-                    End="-66.1666666666666,142.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-122.677356770833,65.880195599022,179.188046875,12.1953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164,42"
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica Dados Existentes)"
-          TopLeft="123,113" />
         <EdgeLayout
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA.Paths[Saída de Correspondência de Pesquisa]"
-          TopLeft="451.333333333333,67">
+          TopLeft="469.333333333333,63">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-246.333333333333,46"
+              EndConnector="-264.333333333333,50"
               Start="0,0"
-              End="-246.333333333333,38.5">
+              End="-264.333333333333,42.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.6699266503667" />
+                    End="0,16.2205882352941" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.6699266503667"
-                    Point2="0,18.6699266503667"
-                    Point3="-4,18.6699266503667" />
+                    Point1="0,16.2205882352941"
+                    Point2="0,20.2205882352941"
+                    Point3="-4,20.2205882352941" />
                   <mssgle:LineSegment
-                    End="-242.333333333333,18.6699266503667" />
+                    End="-260.333333333333,20.2205882352941" />
                   <mssgle:CubicBezierSegment
-                    Point1="-242.333333333333,18.6699266503667"
-                    Point2="-246.333333333333,18.6699266503667"
-                    Point3="-246.333333333333,22.6699266503667" />
+                    Point1="-260.333333333333,20.2205882352941"
+                    Point2="-264.333333333333,20.2205882352941"
+                    Point3="-264.333333333333,24.2205882352941" />
                   <mssgle:LineSegment
-                    End="-246.333333333333,38.5" />
+                    End="-264.333333333333,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-208.540690104167,23.6699266503667,170.748046875,12.1953125"
+              BoundingBox="-217.540690104167,25.2205882352941,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="164,42"
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\UPD_GRP_CONTA"
-          TopLeft="128,220" />
         <EdgeLayout
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA.Paths[Saída Sem Correspondência de Pesquisa1]"
           TopLeft="207.5,155">
@@ -1749,29 +1653,52 @@ where [refTable].[ID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA.Paths[Saída Sem Correspondência de Pesquisa]"
+          TopLeft="538.666666666667,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-102.166666666667,157"
+              Start="0,0"
+              End="-102.166666666667,149.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.4926470588236" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.4926470588236"
+                    Point2="0,63.4926470588236"
+                    Point3="-4,63.4926470588236" />
+                  <mssgle:LineSegment
+                    End="-98.1666666666666,63.4926470588236" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-98.1666666666666,63.4926470588236"
+                    Point2="-102.166666666667,63.4926470588236"
+                    Point3="-102.166666666667,67.4926470588236" />
+                  <mssgle:LineSegment
+                    End="-102.166666666667,149.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-140.677356770833,68.4926470588236,179.188046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\LOOKUP (Verifica disponibilidade - Destino)">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1781,7 +1708,7 @@ where [refTable].[ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1789,7 +1716,7 @@ where [refTable].[ID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\DEST_GRP_CONTA">
+    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\ORIG_GRP_CONTA">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1824,57 +1751,36 @@ where [refTable].[ID] = ?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\ATL_DIM_GRP_CONTA\DEST_GRP_CONTA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="195,42"
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA"
-          TopLeft="165,36" />
-        <NodeLayout
           Size="172,48"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\LOOKUP_VERIFICA_ORIGEM"
           TopLeft="275,152" />
-        <EdgeLayout
-          Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA.Paths[Saída de Origem OLE DB]"
-          TopLeft="262.5,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="98.5,74"
-              Start="0,0"
-              End="98.5,66.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33"
-                    Point2="0,37"
-                    Point3="4,37" />
-                  <mssgle:LineSegment
-                    End="94.5,37" />
-                  <mssgle:CubicBezierSegment
-                    Point1="94.5,37"
-                    Point2="98.5,37"
-                    Point3="98.5,41" />
-                  <mssgle:LineSegment
-                    End="98.5,66.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="178,42"
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEL_DADOS_INDISP"
           TopLeft="143,274" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA"
+          TopLeft="165,36" />
         <EdgeLayout
           Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA.Paths[Saída Sem Correspondência de Pesquisa]"
           TopLeft="361,200">
@@ -1911,9 +1817,68 @@ where [refTable].[ID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA.Paths[Saída de Origem OLE DB]"
+          TopLeft="262.5,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.5,74"
+              Start="0,0"
+              End="98.5,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="4,37" />
+                  <mssgle:LineSegment
+                    End="94.5,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.5,37"
+                    Point2="98.5,37"
+                    Point3="98.5,41" />
+                  <mssgle:LineSegment
+                    End="98.5,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\LOOKUP_VERIFICA_ORIGEM">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[G1020]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\DEST_DIM_GRP_CONTA">
     <Properties>
@@ -1924,29 +1889,6 @@ where [refTable].[ID] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CONT_SEQ_DIM_GRP_CONTA\DEL_DADOS_INDISP_DIM_GRP_CONTA\LOOKUP_VERIFICA_ORIGEM">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[G1020]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
