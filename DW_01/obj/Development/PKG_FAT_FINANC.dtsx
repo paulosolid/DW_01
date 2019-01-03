@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/21/2018 2:29:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PHPNBK"
+  DTS:CreatorName="PHPNBK\Paulo"
+  DTS:DTSID="{CCAD9689-EDDF-4ACE-B020-40D6413981A5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="PKG_FAT_FINANC"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{4242B56D-091B-4827-8689-5EAC97728FF4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F2578F03-BB26-40F4-991F-4C6B524D2E6B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 8)((YEAR(GETDATE()) * 10000 ) + (MONTH(GETDATE() )  * 100 ) + 1 )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DAT_FIM">
+      <DTS:VariableValue
+        DTS:DataType="8">20190101</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FC0EDB13-12E8-4D9C-B008-97A18C773402}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 8)( ( YEAR( DATEADD( &quot;MM&quot;, -12, GETDATE() ) ) * 10000 ) + ( MONTH( DATEADD(&quot;MM&quot;, -12, GETDATE() ) ) * 100 ) + 1 )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DAT_INI">
+      <DTS:VariableValue
+        DTS:DataType="8">20180101</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41D9B076-89FC-4AF4-8E49-968F868C934B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,10) (DT_DBDATE)(GETDATE())"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIM">
+      <DTS:VariableValue
+        DTS:DataType="8">2019-01-03</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1B115957-86C1-427B-93BD-2BE664728476}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,10) (DT_DBDATE)(DATEADD(&quot;MM&quot;,-12,GETDATE()))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="INI">
+      <DTS:VariableValue
+        DTS:DataType="8">2018-01-03</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CNT_SQC"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{5FF952C6-0DBA-42EB-AC62-F7B710F006F8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CNT_SQC">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CNT_SQC\DFT_FAT_FINANC"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{193DD121-D36A-4E67-8716-975A9E8D7120}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_FAT_FINANC"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="DST_FINANC"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[FAT_FINANC]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Connections[OleDbConnection]"
+                      connectionManagerID="{B41E47EE-EAA1-43F7-B9BA-0773654E62A8}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[PHPNBK_MSSQLSERVER16 DataWarehousePHP]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[VLRREALIZADO]"
+                          cachedDataType="numeric"
+                          cachedName="VLRREALIZADO"
+                          cachedPrecision="28"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[VLRREALIZADO]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[VLRREALIZADO]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[DATREALIZADO]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DATREALIZADO"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATREALIZADO]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATREALIZADO]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[DATVENCIMENT]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DATVENCIMENT"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATVENCIMENT]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATVENCIMENT]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[FLAGFINANC]"
+                          cachedDataType="bool"
+                          cachedName="FLAGFINANC"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[FLAGFINANC]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[FLAGFINANC]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[IDFORNEC]"
+                          cachedDataType="i4"
+                          cachedName="IDFORNEC"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKFORNEC]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDFORNEC]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[IDGRUPOCONTA]"
+                          cachedDataType="i4"
+                          cachedName="IDGRUPOCONTA"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKGRUPOCONTA]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDGRUPOCONTA]" />
+                        <inputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].Columns[IDAUTORIZ]"
+                          cachedDataType="i4"
+                          cachedName="IDAUTORIZ"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKAUTORIZ]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDAUTORIZ]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKFORNEC]"
+                          dataType="i4"
+                          name="SRKFORNEC" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKGRUPOCONTA]"
+                          dataType="i4"
+                          name="SRKGRUPOCONTA" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[SRKAUTORIZ]"
+                          dataType="i4"
+                          name="SRKAUTORIZ" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[VLRREALIZADO]"
+                          dataType="numeric"
+                          name="VLRREALIZADO"
+                          precision="28"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATREALIZADO]"
+                          dataType="dbTimeStamp"
+                          name="DATREALIZADO" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATVENCIMENT]"
+                          dataType="dbTimeStamp"
+                          name="DATVENCIMENT" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB].ExternalColumns[FLAGFINANC]"
+                          dataType="bool"
+                          name="FLAGFINANC" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="ORI_FINANC"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[F1010]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+IDFORNEC
+,IDGRUPOCONTA
+,IDAUTORIZ
+,VLRREALIZADO
+,DATREALIZADO
+,DATVENCIMENT
+,FLAGFINANC
+
+FROM [dbo].[F1010] (NOLOCK)
+
+WHERE DATREALIZADO BETWEEN ? AND ?</property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping">"Parâmetro0:Input",{1B115957-86C1-427B-93BD-2BE664728476};"Parâmetro1:Input",{41D9B076-89FC-4AF4-8E49-968F868C934B};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Connections[OleDbConnection]"
+                      connectionManagerID="{82199055-78BD-4197-B4D7-F0999F5F7C5A}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[PHPNBK_MSSQLSERVER16.MasterFinanceiro]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDFORNEC]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNEC]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDFORNEC]"
+                          name="IDFORNEC"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDGRUPOCONTA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDGRUPOCONTA]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDGRUPOCONTA]"
+                          name="IDGRUPOCONTA"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDAUTORIZ]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDAUTORIZ]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[IDAUTORIZ]"
+                          name="IDAUTORIZ"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[VLRREALIZADO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[VLRREALIZADO]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[VLRREALIZADO]"
+                          name="VLRREALIZADO"
+                          precision="28"
+                          scale="2"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATREALIZADO]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[DATREALIZADO]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATREALIZADO]"
+                          name="DATREALIZADO"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATVENCIMENT]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[DATVENCIMENT]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[DATVENCIMENT]"
+                          name="DATVENCIMENT"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[FLAGFINANC]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[FLAGFINANC]"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].Columns[FLAGFINANC]"
+                          name="FLAGFINANC"
+                          truncationRowDisposition="IgnoreFailure" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNEC]"
+                          dataType="i4"
+                          name="IDFORNEC" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDGRUPOCONTA]"
+                          dataType="i4"
+                          name="IDGRUPOCONTA" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[IDAUTORIZ]"
+                          dataType="i4"
+                          name="IDAUTORIZ" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[VLRREALIZADO]"
+                          dataType="numeric"
+                          name="VLRREALIZADO"
+                          precision="28"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[DATREALIZADO]"
+                          dataType="dbTimeStamp"
+                          name="DATREALIZADO" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[DATVENCIMENT]"
+                          dataType="dbTimeStamp"
+                          name="DATVENCIMENT" />
+                        <externalMetadataColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB].ExternalColumns[FLAGFINANC]"
+                          dataType="bool"
+                          name="FLAGFINANC" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNEC]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNEC]"
+                          name="IDFORNEC" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDGRUPOCONTA]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDGRUPOCONTA]"
+                          name="IDGRUPOCONTA" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDAUTORIZ]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[IDAUTORIZ]"
+                          name="IDAUTORIZ" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[VLRREALIZADO]"
+                          dataType="numeric"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[VLRREALIZADO]"
+                          name="VLRREALIZADO"
+                          precision="28"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[DATREALIZADO]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[DATREALIZADO]"
+                          name="DATREALIZADO" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[DATVENCIMENT]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[DATVENCIMENT]"
+                          name="DATVENCIMENT" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[FLAGFINANC]"
+                          dataType="bool"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[FLAGFINANC]"
+                          name="FLAGFINANC" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\CNT_SQC\DFT_FAT_FINANC.Paths[Saída de Origem OLE DB]"
+                  endId="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\CNT_SQC\EXP_FAT_FINANC"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{B56E7AC9-63C5-435D-AB4A-A7715AB5781A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP_FAT_FINANC"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B41E47EE-EAA1-43F7-B9BA-0773654E62A8}"
+              SQLTask:SqlStatementSource="DELETE FROM [DBO].[FAT_FINANC]  WHERE DATREALIZADO BETWEEN ? AND ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::INI"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="8" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::FIM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="8" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\CNT_SQC.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{54DEB85C-26E5-4318-8C1A-9DA64FF4247C}"
+          DTS:From="Package\CNT_SQC\EXP_FAT_FINANC"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\CNT_SQC\DFT_FAT_FINANC" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\CNT_SQC\DFT_FAT_FINANC"
+          TopLeft="85,112" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\CNT_SQC\EXP_FAT_FINANC"
+          TopLeft="58,21" />
+        <EdgeLayout
+          Id="Package\CNT_SQC.PrecedenceConstraints[Restrição]"
+          TopLeft="139.5,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.5,49"
+              Start="0,0"
+              End="27.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="23.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,24.5"
+                    Point2="27.5,24.5"
+                    Point3="27.5,28.5" />
+                  <mssgle:LineSegment
+                    End="27.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="314,232"
+          Size="314,275"
+          Id="Package\CNT_SQC"
+          TopLeft="82,25" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CNT_SQC\DFT_FAT_FINANC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC"
+          TopLeft="124,33" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC"
+          TopLeft="347,144" />
+        <EdgeLayout
+          Id="Package\CNT_SQC\DFT_FAT_FINANC.Paths[Saída de Origem OLE DB]"
+          TopLeft="194,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="223.5,69"
+              Start="0,0"
+              End="223.5,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="4,34.5" />
+                  <mssgle:LineSegment
+                    End="219.5,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="219.5,34.5"
+                    Point2="223.5,34.5"
+                    Point3="223.5,38.5" />
+                  <mssgle:LineSegment
+                    End="223.5,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CNT_SQC\DFT_FAT_FINANC\DST_FINANC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CNT_SQC\DFT_FAT_FINANC\ORI_FINANC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
